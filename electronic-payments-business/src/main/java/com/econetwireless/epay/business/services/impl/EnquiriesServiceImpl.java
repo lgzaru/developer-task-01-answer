@@ -20,8 +20,8 @@ public class EnquiriesServiceImpl implements EnquiriesService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EnquiriesServiceImpl.class);
 
-    private ChargingPlatform chargingPlatform;
-    private SubscriberRequestDao subscriberRequestDao;
+    private final ChargingPlatform chargingPlatform;
+    private final SubscriberRequestDao subscriberRequestDao;
 
     public EnquiriesServiceImpl(ChargingPlatform chargingPlatform, SubscriberRequestDao subscriberRequestDao) {
         this.chargingPlatform = chargingPlatform;
@@ -33,10 +33,10 @@ public class EnquiriesServiceImpl implements EnquiriesService {
         LOGGER.info("Enquire airtime balance :: Partner Code : {}, Msisdn : {}", partnerCode, msisdn);
         final AirtimeBalanceResponse airtimeBalanceResponse = new AirtimeBalanceResponse();
         final SubscriberRequest subscriberRequest = populate(partnerCode, msisdn);
-        final SubscriberRequest createdSubscriberRequest = subscriberRequestDao.persist(subscriberRequest);
+        final SubscriberRequest createdSubscriberRequest = subscriberRequestDao.save(subscriberRequest);
         final INBalanceResponse inBalanceResponse = chargingPlatform.enquireBalance(partnerCode, msisdn);
         changeSubscriberStateOnBalanceEnquiry(createdSubscriberRequest, inBalanceResponse);
-        subscriberRequestDao.update(createdSubscriberRequest);
+        subscriberRequestDao.save(createdSubscriberRequest);
         airtimeBalanceResponse.setResponseCode(inBalanceResponse.getResponseCode());
         airtimeBalanceResponse.setNarrative(inBalanceResponse.getNarrative());
         airtimeBalanceResponse.setMsisdn(msisdn);
