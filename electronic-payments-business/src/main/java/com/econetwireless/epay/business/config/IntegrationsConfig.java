@@ -23,8 +23,12 @@ public class IntegrationsConfig {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(IntegrationsConfig.class);
 
+    private final Environment env;
+
     @Autowired
-    private Environment env;
+    public IntegrationsConfig (Environment env){
+        this.env = env;
+    }
 
     @Bean
     public ChargingPlatform chargingPlatform(final IntelligentNetworkService intelligentNetworkService) {
