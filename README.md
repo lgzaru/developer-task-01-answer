@@ -93,4 +93,15 @@
         return epayRequestProcessor.enquireAirtimeBalance(partnerCode, msisdn);
     } 
    ```
+
+7. Made changes in ResponseCode class
+   - I removed the Modifier 'private' because it is redundant for enum constructors
+   - I added 'this' to Variable 'code' because it is assigned to itself
+   - I also changed the variable code to final
+   ```sh
+   private final String code;
+    ResponseCode(String code) {
+        this.code = code;
+    }
+   ```
    
