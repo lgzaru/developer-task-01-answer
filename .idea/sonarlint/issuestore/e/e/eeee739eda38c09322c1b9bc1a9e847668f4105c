@@ -1,0 +1,15 @@
+
+rsquid:S2629L"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(Æ„›/
+]squid:S3457M"AFormat specifiers should be used instead of string concatenation.(Ã™Âùÿÿÿÿÿ
+xsquid:S2629M"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(Ã™Âùÿÿÿÿÿ
+xsquid:S2629K"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(æ»ğçşÿÿÿÿ
+Xsquid:S3457O"AFormat specifiers should be used instead of string concatenation.(çÏÑú
+Xsquid:S3457P"AFormat specifiers should be used instead of string concatenation.(û¾áÿ
+ssquid:S2629P"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(û¾áÿ
+]squid:S3457K"AFormat specifiers should be used instead of string concatenation.(æ»ğçşÿÿÿÿ
+dsquid:S5361F"HReplace this call to "replaceAll()" by a call to the "replace()" method.(¾¯éÓıÿÿÿÿ
+Wsquid:S3457L"AFormat specifiers should be used instead of string concatenation.(Æ„›/
+xsquid:S2629N"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(£áòüÿÿÿÿ
+ssquid:S2629O"\Invoke method(s) only conditionally. Use the built-in formatting to construct this argument.(çÏÑú
+]squid:S3457N"AFormat specifiers should be used instead of string concatenation.(£áòüÿÿÿÿ
+Ê%squid:RedundantThrowsDeclarationCheck="ŒRemove the declaration of thrown exception 'com.econetwireless.utils.execeptions.InvalidMobileNumberException' which is a runtime exception.(ÏÂ‹Àıÿÿÿÿ8©ôõ£/

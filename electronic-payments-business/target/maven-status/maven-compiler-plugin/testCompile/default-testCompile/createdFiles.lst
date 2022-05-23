@@ -1,0 +1,7 @@
+com/econetwireless/epay/business/services/impl/EnquiriesServiceImplTest.class
+com/econetwireless/epay/business/utils/MessageConvertersToINTest.class
+com/econetwireless/epay/business/integrations/impl/ChargingPlatformImplTest.class
+com/econetwireless/epay/business/utils/MessageConvertersFromINTest.class
+com/econetwireless/epay/business/services/impl/PartnerCodeValidatorImplTest.class
+com/econetwireless/epay/business/services/impl/ReportingServiceImplTest.class
+com/econetwireless/epay/business/services/impl/CreditServiceImplTest.class
