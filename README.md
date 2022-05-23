@@ -70,4 +70,27 @@
                 ", version=" + version +
                 '}';   
    ```
+
+6. Made changes in EpayResource class
+   - I included Constructor Dependency Injection by Autowiring the constructor. I also changed the below fields to final
+   ```sh
+   private final EpayRequestProcessor epayRequestProcessor;
+    private final  ReportingProcessor reportingProcessor;
+
+    @Autowired
+    public EpayResource (EpayRequestProcessor epayRequestProcessor, ReportingProcessor reportingProcessor ){
+        this.epayRequestProcessor = epayRequestProcessor;
+        this.reportingProcessor = reportingProcessor;
+    }
+   ```
+   - Added the missing path variable in AirtimeBalanceResponse method
+   - I removed final String pCode, because it wasn't reference and initialized
+   - On enquireAirtimeBalance method call, i added the path variable partnerCode
+   ```sh
+    @GetMapping(value = "enquiries/{partnerCode}/balances/{mobileNumber}",
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public AirtimeBalanceResponse enquireAirtimeBalance(@PathVariable("mobileNumber") final String msisdn, @PathVariable String partnerCode) {
+        return epayRequestProcessor.enquireAirtimeBalance(partnerCode, msisdn);
+    } 
+   ```
    

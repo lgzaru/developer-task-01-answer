@@ -17,15 +17,19 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("resources/services")
 public class EpayResource {
 
-    private EpayRequestProcessor epayRequestProcessor;
+    private final EpayRequestProcessor epayRequestProcessor;
+    private final  ReportingProcessor reportingProcessor;
 
-
-    private ReportingProcessor reportingProcessor;
+    @Autowired
+    public EpayResource (EpayRequestProcessor epayRequestProcessor, ReportingProcessor reportingProcessor ){
+        this.epayRequestProcessor = epayRequestProcessor;
+        this.reportingProcessor = reportingProcessor;
+    }
 
     @GetMapping(value = "enquiries/{partnerCode}/balances/{mobileNumber}",
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public AirtimeBalanceResponse enquireAirtimeBalance( final String pCode, @PathVariable("mobileNumber") final String msisdn) {
-        return epayRequestProcessor.enquireAirtimeBalance(pCode, msisdn);
+    public AirtimeBalanceResponse enquireAirtimeBalance(@PathVariable("mobileNumber") final String msisdn, @PathVariable String partnerCode) {
+        return epayRequestProcessor.enquireAirtimeBalance(partnerCode, msisdn);
     }
 
     @PostMapping(value = "credits",
