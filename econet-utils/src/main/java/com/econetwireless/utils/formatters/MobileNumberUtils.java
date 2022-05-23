@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
  */
 public class MobileNumberUtils {
 
-    private final Logger LOGGER = LoggerFactory.getLogger(MobileNumberUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MobileNumberUtils.class);
 
     private MobileNumberUtils() {
 
@@ -83,14 +83,4 @@ public class MobileNumberUtils {
         }
     }
 
-    public static boolean isInitiatorSameAsBeneficiary(String initiatorMobileNumber, String beneficiaryMobileNumber) {
-        try {
-            return formatMobileNumber(initiatorMobileNumber).equalsIgnoreCase(formatMobileNumber(beneficiaryMobileNumber));
-        } catch (InvalidMobileNumberException e) {
-            if(LOGGER.isDebugEnabled()) {
-                LOGGER.error("Error Checking Initiator if Same with beneficiary : ", e);
-            }
-            return false;
-        }
-    }
 }

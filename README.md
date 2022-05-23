@@ -24,3 +24,10 @@
     final SubscriberRequest createdSubscriberRequest = subscriberRequestDao.save(subscriberRequest);
     subscriberRequestDao.save(createdSubscriberRequest);
    ```
+
+3. Made changes in MobileNumberUtils class
+   - changed field logger to static because Non-static field cannot be referenced from a static context
+   ```sh
+     private static final Logger LOGGER = LoggerFactory.getLogger(MobileNumberUtils.class);
+   ```
+   - also removed the boolean method "isInitiatorSameAsBeneficiary" because it was never used or referenced
