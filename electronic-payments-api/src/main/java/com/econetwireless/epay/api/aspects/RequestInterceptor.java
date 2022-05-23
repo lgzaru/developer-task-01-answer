@@ -27,10 +27,14 @@ public class RequestInterceptor {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RequestInterceptor.class);
 
-    @Autowired
-    private PartnerCodeValidator partnerCodeValidator;
+    private final PartnerCodeValidator partnerCodeValidator;
 
-    @Around("execution(* com.econetwireless.epay.api.rest.resources.EpayResource.getPartnerTransactions(..)) and args(partnerCode)")
+    @Autowired
+    public RequestInterceptor(PartnerCodeValidator partnerCodeValidator) {
+        this.partnerCodeValidator = partnerCodeValidator;
+    }
+
+    @Around("execution(* com.econetwireless.epay.api.rest.resources.EpayResource.getPartnerTransactions(..)) && args(partnerCode)")
     public TransactionsResponse getPartnerTransactions(final ProceedingJoinPoint joinPoint, final String partnerCode) {
         TransactionsResponse transactionsResponse = new TransactionsResponse();
         try {
@@ -60,7 +64,7 @@ public class RequestInterceptor {
     }
 
 
-    @Around("execution(* com.econetwireless.epay.api.rest.resources.EpayResource.enquireAirtimeBalance(..)) and args(partnerCode, msisdn)")
+    @Around(value = "execution(* com.econetwireless.epay.api.rest.resources.EpayResource.enquireAirtimeBalance(..)) && args(partnerCode, msisdn)", argNames = "joinPoint,partnerCode,msisdn")
     public AirtimeBalanceResponse enquireAirtimeBalance(final ProceedingJoinPoint joinPoint, final String partnerCode, final String msisdn) {
         AirtimeBalanceResponse airtimeBalanceResponse = new AirtimeBalanceResponse();
         try {
@@ -89,7 +93,7 @@ public class RequestInterceptor {
         return  airtimeBalanceResponse;
     }
 
-    @Around("execution(* com.econetwireless.epay.api.rest.resources.EpayResource.creditAirtime(..)) and args(airtimeTopupRequest)")
+    @Around("execution(* com.econetwireless.epay.api.rest.resources.EpayResource.creditAirtime(..)) && args(airtimeTopupRequest)")
     public AirtimeTopupResponse creditAirtime(final ProceedingJoinPoint joinPoint, final AirtimeTopupRequest airtimeTopupRequest) {
         AirtimeTopupResponse airtimeTopupResponse = new AirtimeTopupResponse();
         try {

@@ -104,4 +104,32 @@
         this.code = code;
     }
    ```
+
+8. Made changes in IntelligentNetworkServiceImpl class
+   - Changed the @BindingType(value = SOAPBinding.SOAP12HTTP_BINDING) to @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING) in the IntelligentNetworkServiceImpl class.
+   - The reason being that in IntelligentNetworkService.wsdl the soap namespace defined
+     as:  "http://schemas.xmlsoap.org/wsdl/soap/" and it means its using SOAP v1.1 and by default its uses SOAP11HTTP_BINDING binding type.
+   ```sh
+   @BindingType(value = SOAPBinding.SOAP11HTTP_BINDING)
+   ```
+
+9. Made changes in RequestInterceptor class
+   - Changed the and to &&
+   ```sh
+       @Around("execution(* com.econetwireless.epay.api.rest.resources.EpayResource.getPartnerTransactions(..)) and args(partnerCode)")
+
+   ```
+   - Changed field injection to Constructor Injection
+   ```sh
+    private final PartnerCodeValidator partnerCodeValidator;
+   
+    @Autowired
+    public RequestInterceptor(PartnerCodeValidator partnerCodeValidator) {
+        this.partnerCodeValidator = partnerCodeValidator;
+    }
+   ```
+   - Defined the args
+   ```sh
+      argNames = "joinPoint,partnerCode,msisdn"
+   ```
    
