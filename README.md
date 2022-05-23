@@ -31,3 +31,17 @@
      private static final Logger LOGGER = LoggerFactory.getLogger(MobileNumberUtils.class);
    ```
    - also removed the boolean method "isInitiatorSameAsBeneficiary" because it was never used or referenced
+   
+4. Made changes in PartnerCodeValidatorImpl class
+   - removed the super reference in PartnerCodeValidatorImpl constructor
+   ```sh
+   public PartnerCodeValidatorImpl(RequestPartnerDao requestPartnerDao) {
+        this.requestPartnerDao = requestPartnerDao;
+    }
+   ```
+   - changed RequestPartnerDao field to final
+     private final RequestPartnerDao requestPartnerDao;
+   - in method validatePartnerCode, the return value is always true, so I simplified it as follows
+    ```sh
+    return true;
+    ```
