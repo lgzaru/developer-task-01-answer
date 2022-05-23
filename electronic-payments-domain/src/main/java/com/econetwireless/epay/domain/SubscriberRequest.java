@@ -10,7 +10,7 @@ import java.util.Date;
  * Created by tnyamakura on 17/3/2017.
  */
 @Entity(name = "request")
-@NamedQueries({@NamedQuery(name = "SubscriberRequest.findByPartnerCode", query = "select r from Request r where r.partnerCode = :partnerCode order by r.dateCreated desc ")})
+@NamedQueries({@NamedQuery(name = "SubscriberRequest.findByPartnerCode", query = "select r from request r where r.partnerCode = :partnerCode order by r.dateCreated desc ")})
 @Table(name = "e_request", indexes = {@Index(name = "req_msisdn_indx", columnList = "mobile_number")})
 public class SubscriberRequest {
     @Id
@@ -39,7 +39,7 @@ public class SubscriberRequest {
     @Version
     private long version;
 
-    @PreInsert
+    @PrePersist
     protected void init() {
         if(id == null) {
             id = KeyGen.getUniqueId();
@@ -155,20 +155,18 @@ public class SubscriberRequest {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("SubscriberRequest{");
-        sb.append("id=").append(id);
-        sb.append(", requestType='").append(requestType).append('\'');
-        sb.append(", partnerCode='").append(partnerCode).append('\'');
-        sb.append(", msisdn='").append(msisdn).append('\'');
-        sb.append(", balanceBefore=").append(balanceBefore);
-        sb.append(", balanceAfter=").append(balanceAfter);
-        sb.append(", amount=").append(amount);
-        sb.append(", dateCreated=").append(dateCreated);
-        sb.append(", dateLastUpdated=").append(dateLastUpdated);
-        sb.append(", status='").append(status).append('\'');
-        sb.append(", reference='").append(reference).append('\'');
-        sb.append(", version=").append(version);
-        sb.append('}');
-        return sb.toString();
+        return "SubscriberRequest{" + "id=" + id +
+                ", requestType='" + requestType + '\'' +
+                ", partnerCode='" + partnerCode + '\'' +
+                ", msisdn='" + msisdn + '\'' +
+                ", balanceBefore=" + balanceBefore +
+                ", balanceAfter=" + balanceAfter +
+                ", amount=" + amount +
+                ", dateCreated=" + dateCreated +
+                ", dateLastUpdated=" + dateLastUpdated +
+                ", status='" + status + '\'' +
+                ", reference='" + reference + '\'' +
+                ", version=" + version +
+                '}';
     }
 }

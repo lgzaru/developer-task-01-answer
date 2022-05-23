@@ -45,3 +45,29 @@
     ```sh
     return true;
     ```
+5. Made changes to SubscriberRequest class
+   - I renamed the Request to request to match the actual name of the entity
+   ```sh
+   @NamedQueries({@NamedQuery(name = "SubscriberRequest.findByPartnerCode", query = "select r from request r where r.partnerCode = :partnerCode order by r.dateCreated desc ")})
+   ```
+   - Changed the annotation  @PreInsert to @PrePersist. There is no @PreInsert callback annotation in JPA
+   ```sh
+    @PrePersist
+   ```
+   - Replaced StringBuilder to String in order to simplify the code
+   ```sh
+        return "SubscriberRequest{" + "id=" + id +
+                ", requestType='" + requestType + '\'' +
+                ", partnerCode='" + partnerCode + '\'' +
+                ", msisdn='" + msisdn + '\'' +
+                ", balanceBefore=" + balanceBefore +
+                ", balanceAfter=" + balanceAfter +
+                ", amount=" + amount +
+                ", dateCreated=" + dateCreated +
+                ", dateLastUpdated=" + dateLastUpdated +
+                ", status='" + status + '\'' +
+                ", reference='" + reference + '\'' +
+                ", version=" + version +
+                '}';   
+   ```
+   
